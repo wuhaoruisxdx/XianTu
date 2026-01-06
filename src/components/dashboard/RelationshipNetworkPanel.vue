@@ -335,16 +335,12 @@
                   </div>
                 </div>
 
-                <!-- Tab: 私密信息（仅酒馆环境） -->
-                <div v-if="isTavernEnvFlag" v-show="activeTab === 'nsfw'" class="tab-panel">
+                <!-- Tab: 私密信息 -->
+                <div v-if="nsfwEnabled" v-show="activeTab === 'nsfw'" class="tab-panel">
                   <div class="detail-section nsfw-section">
                     <h5 class="section-title">🔞 私密信息</h5>
 
-                    <div v-if="!nsfwEnabled" class="bottomline-empty">
-                      成人内容未启用（可在设置面板开启）
-                    </div>
-
-                    <div v-else-if="privacy">
+                    <div v-if="privacy">
                       <!-- 概览 -->
                       <div class="nsfw-subsection">
                         <h6 class="subsection-title">概览</h6>
@@ -943,7 +939,7 @@ const tabs = computed(() => {
     { id: 'status', label: '实时状态', icon: '💭' },
   ];
 
-  if (isTavernEnvFlag) {
+  if (nsfwEnabled.value) {
     baseTabs.push({ id: 'nsfw', label: '私密信息', icon: '🔞' });
   }
 
